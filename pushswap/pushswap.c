@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 18:18:40 by marvin            #+#    #+#             */
-/*   Updated: 2021/08/15 21:16:31 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/19 19:03:26 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "pushswap.h"
 
 int	convert_stack_a (char **list, int argc, int *stack_a)
 {
@@ -23,7 +25,7 @@ int	convert_stack_a (char **list, int argc, int *stack_a)
 		if(ft_strlen(list[a]) > num_size)
 			num_size = ft_strlen(list[a]);
 	}
-	stack_a = malloc((argc - 1) * num_size * sizeof(int));
+	stack_a = malloc((argc - 1) * sizeof(int));
 	if (!stack_a)
 		return (0);
 	a = 0;
@@ -109,41 +111,60 @@ int init_stacks(int *stack_a, int *stack_b, int *copy_a, int size_a)
 	copy_stacks(stack_a, copy_a, size_a);
 }
 
-int stack_a(int *stack_a)
+int	record(t_stacks sub_stacks, int *stack_b)
+{
+	int a;
+
+	a = 0;
+	while (sub_stacks->substacks[a] != NULL)
+		a++;
+	sub_stacks->substacks[a] = stack_b;
+}
+
+int start(int *stack_a, t_stacks sub_stacks)
 {
 	int median;
 	int size_a;
 	int *stack_b;
 	int *copy_a;
+	int count;
 
 	size_a = (sizeof(stack_a) / sizeof(int));
 	median = find_median(stack_a, size_a);
 	init_stacks(stack_a, stack_b, copy_a, size_a);
 	while (--size_a != 0)
 	{
-		if (stack_a[size_a] < median)
+		if (stack_a[size_a] <= median)
+		{
 			pb(copy_a, stack_b);
+			count++;
+			if (count == size_a / 2)
+				break;
+		}
 		else 
 			ra(copy_a, stack_b);
 	}
+	record(sub_stacks, stack_b);
+	return (copy_a);
 }
 
 int	calc(int *stack_a)
 {
-	int median;
 	int size_a;
-	int *stack_b;
-	int *copy_a;
+	t_stacks sub_stacks;
 
-	new_stack(stack_a);
+	sub_stacks = malloc(t_stacks);
+	if (!sub_stacks)
+			return (0);
 	size_a = (sizeof(stack_a) / sizeof(int));
-	median = find_median(stack_a, size_a);
-	init_stacks(stack_a, stack_b, copy_a, size_a);
-	while (--size_a != 0)
-		if (stack_a[size_a] < median)
-			pb(copy_a, stack_b);
-		else 
-			ra(copy_a, stack_b);
+	while (size_a > 2)
+	{
+		stack_a = start(stack_a, sub_stacks);
+		size_a = (sizeof(stack_a) / sizeof(int));
+	}
+	if (stack_a[0] > stack_a[1])
+		sa(stack_a);
+	solve_substacks()
 }
 
 int	*init(char **list, int argc)
@@ -156,7 +177,7 @@ int	*init(char **list, int argc)
 	a = convert_stack_a(**list, argc, stack_a);
 	if (a = 0)
 		return (0);
-	calc(stack_a, argc);
+	calc(stack_a);
 }
 
 int		pushswap(char **list,int argc)

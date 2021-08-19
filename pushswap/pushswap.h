@@ -8,11 +8,17 @@
 # include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
 
-typedef struct	s_list
+typedef struct	s_stacks
 {
-	char			*content;
-	struct s_list	*next;
-}				t_list;
+	int				*substack;
+	int				size;
+	s_stacks		*next;
+}				t_stacks;
+
+typedef struct	s_instruction
+{
+	char			**instruction;
+}				t_instruction;
 
 /*
 **				Checker
