@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:09:26 by marvin            #+#    #+#             */
-/*   Updated: 2021/09/29 17:37:48 by marvin           ###   ########.fr       */
+/*   Updated: 2021/09/30 16:36:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void	merge_b_into_a_partitioning(t_list **stack_a,
 	curr_len = old_len;
 	while (curr_len > old_len / 2 && *stack_b)
 	{
-		if ((long)(*partitions)->content <= (long)(*stack_b)->content && curr_len--)
+		if ((long)(*partitions)->content <= (long)(*stack_b)->content && \
+		curr_len--)
 			push_stack_print(stack_a, stack_b, "pa");
 		else if ((long)(*stack_b)->content == ft_lst_get_min(*stack_b))
 		{

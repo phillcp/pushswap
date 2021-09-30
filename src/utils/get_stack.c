@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:11:10 by marvin            #+#    #+#             */
-/*   Updated: 2021/09/30 16:16:41 by marvin           ###   ########.fr       */
+/*   Updated: 2021/09/30 16:38:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	get_stack(char *stack[], int len, t_list **stack_a)
 	i = 0;
 	while (i < len)
 	{
-		if (atoi(stack[i]) >= 2147483647 || atoi(stack[i]) <= -2147483647)
+		if (ft_atoi(stack[i]) >= 2147483647 || ft_atoi(stack[i]) <= -2147483648)
 			ft_exit(1, stack_a, 0, 0);
 		if (!is_int(stack[i]))
 			ft_exit(1, stack_a, 0, 0);
