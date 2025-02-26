@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_stack.c                                        :+:      :+:    :+:   */
+/*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:11:10 by marvin            #+#    #+#             */
-/*   Updated: 2021/09/30 16:38:07 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/26 15:34:46 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_stack.h"
+#include "parse_args.h"
 
-void	get_stack(char *stack[], int len, t_list **stack_a)
+void	parse_args(char *stack[], int len, t_list **stack_a)
 {
 	t_list		*node;
 	int			i;
 	long long	tmp;
 
 	i = 0;
+	if (stack[i][0] == '\0')
+		ft_exit(1, stack_a, 0, 0);
 	while (i < len)
 	{
-		if (ft_atoi(stack[i]) >= 2147483647 || ft_atoi(stack[i]) <= -2147483648)
-			ft_exit(1, stack_a, 0, 0);
 		if (!is_int(stack[i]))
 			ft_exit(1, stack_a, 0, 0);
 		tmp = ft_atoi(stack[i]);
@@ -38,13 +38,15 @@ void	get_stack(char *stack[], int len, t_list **stack_a)
 		ft_exit(1, stack_a, 0, 0);
 }
 
-static int	is_int(char *stack_item)
+int	is_int(char *stack_item)
 {
 	int	check;
 
 	check = 1;
 	if (*stack_item == '-')
 	{
+		if (ft_strlen(stack_item) == 1)
+			check = 0;
 		if (!ft_strisdigit(stack_item + 1))
 			check = 0;
 	}
@@ -52,20 +54,35 @@ static int	is_int(char *stack_item)
 		check = 0;
 	return (check);
 }
-
-static int	is_bigger_than_int(long long nb, char *item)
+int	is_bigger_than_int(long long nb, char *item)
 {
 	int	check;
+	int	ret;
 
-	check = 0;
-	if (nb < INT_MIN || INT_MAX < nb)
-		check = 1;
+	ret = 0;
+	check = ft_strlen(item);
+	if (item[0] == '-')
+	{
+		if (check > 11)
+			ret = 1;
+		else if (check == 11)
+			if (ft_strcmp("-2147483648", item) < 0)
+				ret = 1;
+	}
+	else
+	{
+		if (check > 10)
+			ret = 1;
+		else if (check == 10)
+			if (ft_strcmp("2147483647", item) < 0)
+				ret = 1;
+	}
 	if (nb == 0 && !is_all_zeros(item))
-		check = 1;
-	return (check);
+		ret = 1;
+	return (ret);
 }
 
-static int	is_all_zeros(char *item)
+int	is_all_zeros(char *item)
 {
 	if (*item == '-')
 		item++;
@@ -77,7 +94,7 @@ static int	is_all_zeros(char *item)
 	return (1);
 }
 
-static int	has_duplicates(t_list *stack)
+int	has_duplicates(t_list *stack)
 {
 	t_list	*tmp;
 

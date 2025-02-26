@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_stack.h                                        :+:      :+:    :+:   */
+/*   parse_args.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:11:37 by marvin            #+#    #+#             */
-/*   Updated: 2021/09/29 16:11:43 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:28:37 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_STACK_H
-# define GET_STACK_H
+#ifndef PARSE_ARGS_H
+# define PARSE_ARGS_H
 
 # include "utils.h"
 
-static int	is_int(char *stack_item);
-static int	is_bigger_than_int(long long nb, char *item);
-static int	is_all_zeros(char *item);
-static int	has_duplicates(t_list *stack);
+int	is_int(char *stack_item);
+int	is_bigger_than_int(long long nb, char *item);
+int	is_all_zeros(char *item);
+int	has_duplicates(t_list *stack);
 
 #endif

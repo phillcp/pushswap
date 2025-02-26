@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_instructions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:02:57 by marvin            #+#    #+#             */
-/*   Updated: 2021/09/29 16:03:00 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/26 15:09:14 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_instructions.h"
+#include <printf.h>
 
 void	get_instructions(t_list **instructions,
 			t_list **stack_a,
@@ -26,6 +27,7 @@ void	get_instructions(t_list **instructions,
 			free(line);
 			ft_exit(2, stack_a, stack_b, instructions);
 		}
+		printf("a\n");
 		tmp = ft_lstnew((void *)line);
 		if (!tmp)
 		{

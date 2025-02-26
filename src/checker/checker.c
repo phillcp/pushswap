@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 18:06:00 by fheaton-          #+#    #+#             */
-/*   Updated: 2021/09/29 16:46:16 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/26 15:07:22 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	main(int argc, char *argv[])
 	if (!ft_strcmp(argv[1], "-v"))
 		mode = 'v';
 	if (!ft_strcmp(argv[1], "-v"))
-		get_stack(argv + 2, argc - 2, &stack_a);
+		parse_args(argv + 2, argc - 2, &stack_a);
 	else
-		get_stack(argv + 1, argc - 1, &stack_a);
+		parse_args(argv + 1, argc - 1, &stack_a);
 	get_instructions(&instructions, &stack_a, &stack_b);
 	exec_instructions(instructions, &stack_a, &stack_b, mode);
 	if (is_sorted(stack_a) && ft_lstsize(stack_b) == 0)
