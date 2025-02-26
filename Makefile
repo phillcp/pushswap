@@ -24,7 +24,7 @@ INC_DIRS			:=		$(shell find $(PATH_SRC) -type d)
 CC					:=		gcc
 
 # Flags - compilation
-FLAG_WARNING		:=		-Wall -Wextra -Werror
+FLAG_WARNING		:=		-Wall -Wextra -Werror -Wpedantic -Werror=pedantic -pedantic-errors -Wcast-align -Wcast-qual -Wdisabled-optimization -Wformat=2 -Wuninitialized -Winit-self -Wmissing-include-dirs -Wredundant-decls -Wshadow -Wstrict-overflow=5 -Wundef -fdiagnostics-show-option -fstack-protector-all -fstack-clash-protection -Wformat-signedness -Wformat-truncation=2 -Wformat-overflow=2 -Wlogical-op -Wstringop-overflow=4 -g -fsanitize=address -fsanitize-recover=address -fno-omit-frame-pointer -fno-common -fsanitize=pointer-subtract -fsanitize=pointer-compare -fsanitize=undefined -fsanitize=leak
 FLAG_INC			:= 		$(addprefix -I, $(INC_DIRS))
 FLAG_MAKEFILE		:=		-MMD -MP
 FLAG_DEBUG			:= 		-g
