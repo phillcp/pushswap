@@ -8,6 +8,7 @@
 		"checker.h": "c",
 		"stdio.h": "c",
 		"get_instructions.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"printf.h": "c"
 	}
 }

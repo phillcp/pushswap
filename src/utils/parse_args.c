@@ -6,27 +6,36 @@
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:11:10 by marvin            #+#    #+#             */
-/*   Updated: 2025/02/26 15:34:46 by fheaton-         ###   ########.fr       */
+/*   Updated: 2025/03/10 18:40:31 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_args.h"
+
+char	*abc(char *str)
+{
+	while (str && (*str == '0' || *str == ' '))
+		str++;
+	return (str);
+}
 
 void	parse_args(char *stack[], int len, t_list **stack_a)
 {
 	t_list		*node;
 	int			i;
 	long long	tmp;
+	char		*item;
 
 	i = 0;
 	if (stack[i][0] == '\0')
 		ft_exit(1, stack_a, 0, 0);
 	while (i < len)
 	{
-		if (!is_int(stack[i]))
+		item = abc(stack[i]);
+		if (!is_int(item))
 			ft_exit(1, stack_a, 0, 0);
-		tmp = ft_atoi(stack[i]);
-		if (is_bigger_than_int(tmp, stack[i]))
+		tmp = ft_atoi(item);
+		if (is_bigger_than_int(tmp, item))
 			ft_exit(1, stack_a, 0, 0);
 		node = ft_lstnew((void *)tmp);
 		if (!node)
@@ -54,6 +63,7 @@ int	is_int(char *stack_item)
 		check = 0;
 	return (check);
 }
+
 int	is_bigger_than_int(long long nb, char *item)
 {
 	int	check;

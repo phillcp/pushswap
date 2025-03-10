@@ -6,7 +6,7 @@
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:02:11 by fheaton-          #+#    #+#             */
-/*   Updated: 2025/02/26 15:34:48 by fheaton-         ###   ########.fr       */
+/*   Updated: 2025/03/10 18:46:07 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@ int	parse_args2(char *stack[], int len, t_list **stack_a)
 	t_list		*node;
 	int			i;
 	long long	tmp;
+	char		*item;
 
 	i = 0;
 	if (stack[i][0] == '\0')
 		ft_exit(1, stack_a, 0, 0);
 	while (i < len)
 	{
-		if (!is_int(stack[i]))
+		item = abc(stack[i]);
+		if (!is_int(item))
 			return (1);
-		tmp = ft_atoi(stack[i]);
-		if (is_bigger_than_int(tmp, stack[i]))
+		tmp = ft_atoi(item);
+		if (is_bigger_than_int(tmp, item))
 			return (1);
 		node = ft_lstnew((void *)tmp);
 		if (!node)
