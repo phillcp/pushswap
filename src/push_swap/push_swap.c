@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fiheaton <fiheaton@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 18:18:40 by marvin            #+#    #+#             */
-/*   Updated: 2025/02/26 13:32:47 by fheaton-         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:53:04 by fiheaton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		return (0);
 	if (argc == 2)
-		parse_string(argv[1], &stack_a);
+		parse_string(++argv, &stack_a);
 	else
-		parse_args(argv + 1, argc - 1, &stack_a);
+		parse_string(++argv, &stack_a);
 	if (!is_sorted(stack_a))
 		sort_stack(&stack_a, &stack_b);
 	ft_exit(0, &stack_a, &stack_b, 0);

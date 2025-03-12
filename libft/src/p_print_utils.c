@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_args.h                                       :+:      :+:    :+:   */
+/*   p_print_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fiheaton <fiheaton@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 16:11:37 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/12 19:34:11 by fiheaton         ###   ########.fr       */
+/*   Created: 2021/04/05 15:52:35 by svieira           #+#    #+#             */
+/*   Updated: 2021/07/24 14:04:05 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_ARGS_H
-# define PARSE_ARGS_H
+#include "ft_printf.h"
 
-# include "utils.h"
-
-int		is_int(char *stack_item);
-int		is_bigger_than_int(long long nb, char *item);
-int		is_all_zeros(char *item);
-int		has_duplicates(t_list *stack);
-
-#endif
+void	ft_put_xl(unsigned long n, char *base)
+{
+	if (n >= 16)
+		ft_put_xl(n / 16, base);
+	ft_putchar_fd(base[n % 16], 1);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fiheaton <fiheaton@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 21:54:08 by marvin            #+#    #+#             */
-/*   Updated: 2025/02/26 11:41:34 by fheaton-         ###   ########.fr       */
+/*   Updated: 2025/03/12 19:41:20 by fiheaton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdio.h>
+# include "ft_printf.h"
 
 # define MAX_LINE 200000
 
@@ -30,7 +31,7 @@ typedef struct s_list
 **				Part 1
 */
 
-int				ft_atoi(const char *str);
+long			ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t nmemb, size_t size);
 int				ft_isalnum(int c);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fiheaton <fiheaton@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:12:27 by marvin            #+#    #+#             */
-/*   Updated: 2021/09/29 17:12:10 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/12 17:53:31 by fiheaton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void	ft_exit(int exit_code,
 void	print_stacks(char *instruction,	t_list *stack_a, t_list *stack_b);
 void	print_stack(t_list **stack_a, int *len_a, t_list **stack_b, int *len_b);
 int		is_sorted(t_list *stack);
+char	*abc(char *str);
 
 #endif

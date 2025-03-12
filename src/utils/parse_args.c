@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fiheaton <fiheaton@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:11:10 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/10 18:40:31 by fheaton-         ###   ########.fr       */
+/*   Updated: 2025/03/12 19:50:31 by fiheaton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_args.h"
-
-char	*abc(char *str)
-{
-	while (str && (*str == '0' || *str == ' '))
-		str++;
-	return (str);
-}
 
 void	parse_args(char *stack[], int len, t_list **stack_a)
 {
@@ -32,9 +25,9 @@ void	parse_args(char *stack[], int len, t_list **stack_a)
 	while (i < len)
 	{
 		item = abc(stack[i]);
-		if (!is_int(item))
+		if (!is_int(stack[i]))
 			ft_exit(1, stack_a, 0, 0);
-		tmp = ft_atoi(item);
+		tmp = ft_atoi(stack[i]);
 		if (is_bigger_than_int(tmp, item))
 			ft_exit(1, stack_a, 0, 0);
 		node = ft_lstnew((void *)tmp);
@@ -71,12 +64,12 @@ int	is_bigger_than_int(long long nb, char *item)
 
 	ret = 0;
 	check = ft_strlen(item);
-	if (item[0] == '-')
+	if (nb < 0)
 	{
-		if (check > 11)
+		if (check > 10)
 			ret = 1;
-		else if (check == 11)
-			if (ft_strcmp("-2147483648", item) < 0)
+		else if (check == 10)
+			if (ft_strcmp("2147483648", item) < 0)
 				ret = 1;
 	}
 	else

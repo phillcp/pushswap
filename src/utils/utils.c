@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fiheaton <fiheaton@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:12:49 by marvin            #+#    #+#             */
-/*   Updated: 2021/09/29 20:01:58 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/12 17:59:44 by fiheaton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+char	*abc(char *str)
+{
+	if (*str == '-')
+		str++;
+	while (str && (*str == '0' || *str == ' '))
+		str++;
+	return (str);
+}
 
 void	ft_exit(int exit_code,
 		t_list **stack_a,
@@ -45,28 +54,28 @@ void	print_stacks(char *instruction,	t_list *stack_a, t_list *stack_b)
 
 	len_a = ft_lstsize(stack_a);
 	len_b = ft_lstsize(stack_b);
-	printf("----------------\n%s:\n\n", instruction);
+	ft_printf("----------------\n%s:\n\n", instruction);
 	while (len_a >= 0 && len_b >= 0)
 		print_stack(&stack_a, &len_a, &stack_b, &len_b);
-	printf("   ___    ___\n    A      B\n");
+	ft_printf("   ___    ___\n    A      B\n");
 }
 
 void	print_stack(t_list **stack_a, int *len_a, t_list **stack_b, int *len_b)
 {
 	if (*len_a > *len_b && (*len_a)--)
 	{
-		printf("  % -5ld\n", (long)(*stack_a)->content);
+		ft_printf("  % -5ld\n", (long)(*stack_a)->content);
 		*stack_a = (*stack_a)->next;
 	}
 	else if (*len_a < *len_b && (*len_b)--)
 	{
-		printf("         % -5ld\n", (long)(*stack_b)->content);
+		ft_printf("         % -5ld\n", (long)(*stack_b)->content);
 		*stack_b = (*stack_b)->next;
 	}
 	else if ((*len_a)-- && (*len_b)--)
 	{
-		printf("  % -5ld", (long)(*stack_a)->content);
-		printf("  % -5ld\n", (long)(*stack_b)->content);
+		ft_printf("  % -5ld", (long)(*stack_a)->content);
+		ft_printf("  % -5ld\n", (long)(*stack_b)->content);
 		*stack_a = (*stack_a)->next;
 		*stack_b = (*stack_b)->next;
 	}

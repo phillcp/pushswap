@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fiheaton <fiheaton@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:02:11 by fheaton-          #+#    #+#             */
-/*   Updated: 2025/03/10 18:46:07 by fheaton-         ###   ########.fr       */
+/*   Updated: 2025/03/12 19:57:42 by fiheaton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	parse_args2(char *stack[], int len, t_list **stack_a)
 	while (i < len)
 	{
 		item = abc(stack[i]);
-		if (!is_int(item))
+		if (!is_int(stack[i]))
 			return (1);
-		tmp = ft_atoi(item);
+		tmp = ft_atoi(stack[i]);
 		if (is_bigger_than_int(tmp, item))
 			return (1);
 		node = ft_lstnew((void *)tmp);
@@ -41,26 +41,31 @@ int	parse_args2(char *stack[], int len, t_list **stack_a)
 	return (0);
 }
 
-void	parse_string(char *stack, t_list **stack_a)
+void	parse_string(char **stack, t_list **stack_a)
 {
 	char		**list;
 	int			i;
+	int			j;
 	int			ret;
 
-	list = ft_split(stack, ' ');
-	i = 0;
-	if (stack[0] == '\0')
-		ft_exit(1, stack_a, 0, 0);
-	while (list[i])
-		i++;
-	ret = parse_args2(list, i, stack_a);
-	i = 0;
-	while (list[i])
+	j = -1;
+	while (stack[++j])
 	{
-		free(list[i]);
-		i++;
+		if (stack[j][0] == '\0')
+			ft_exit(1, stack_a, 0, 0);
+		list = ft_split(stack[j], ' ');
+		i = 0;
+		while (list[i])
+			i++;
+		ret = parse_args2(list, i, stack_a);
+		i = 0;
+		while (list[i])
+		{
+			free(list[i]);
+			i++;
+		}
+		free(list);
+		if (ret)
+			ft_exit(1, stack_a, 0, 0);
 	}
-	free(list);
-	if (ret)
-		ft_exit(1, stack_a, 0, 0);
 }

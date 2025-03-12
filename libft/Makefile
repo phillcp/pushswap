@@ -12,7 +12,7 @@ DEPS				:=		$(OBJS:.o=.d)
 INC_DIRS			:=		$(shell find $(PATH_SRC) -type d)
 
 # Compiler
-CC					:=		gcc
+CC					:=		cc
 
 # Flags - compilation
 FLAG_WARNING		:=		-Wall -Wextra -Werror

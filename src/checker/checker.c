@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fiheaton <fiheaton@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 18:06:00 by fheaton-          #+#    #+#             */
-/*   Updated: 2025/02/26 15:07:22 by fheaton-         ###   ########.fr       */
+/*   Updated: 2025/03/12 17:58:28 by fiheaton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	main(int argc, char *argv[])
 	get_instructions(&instructions, &stack_a, &stack_b);
 	exec_instructions(instructions, &stack_a, &stack_b, mode);
 	if (is_sorted(stack_a) && ft_lstsize(stack_b) == 0)
-		printf("OK\n");
+		ft_printf("OK\n");
 	else
-		printf("KO\n");
+		ft_printf("KO\n");
 	ft_exit(0, &stack_a, &stack_b, &instructions);
 }
